@@ -14,15 +14,13 @@ public class FileNavigator {
 	public void add(String pathToFile, FileData data) {
 		if (data.getPathToFile() == null) {
 			System.out.println("PathToFile missing");
+		} else if (!data.getPathToFile().equals(pathToFile)) {
+			System.out.println("Key and PathToFile different!");
+			System.out.printf("Key %s \n FileDate: {name: %s, size: %s, pathToFile:%s}\n",
+					pathToFile, data.getNameFile(), data.getSizeFile(), data.getPathToFile());
 		} else {
-			if (!data.getPathToFile().equals(pathToFile)) {
-				System.out.println("Key and PathToFile different!");
-				System.out.printf("Key %s \n FileDate: {name: %s, size: %s, pathToFile:%s}\n",
-						pathToFile, data.getNameFile(), data.getSizeFile(), data.getPathToFile());
-			} else {
-				listMap.putIfAbsent(pathToFile, new ArrayList<>());
-				listMap.get(data.getPathToFile()).add(data);
-			}
+			listMap.putIfAbsent(pathToFile, new ArrayList<>());
+			listMap.get(data.getPathToFile()).add(data);
 		}
 	}
 	
